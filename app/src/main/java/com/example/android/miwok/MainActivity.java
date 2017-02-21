@@ -15,13 +15,10 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -31,42 +28,16 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        //
-        final TextView numbers = (TextView) findViewById(R.id.numbers);
-        final TextView family = (TextView) findViewById(R.id.family);
-        final TextView phrases = (TextView) findViewById(R.id.phrases);
-        final TextView colors = (TextView) findViewById(R.id.colors);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        numbers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent openNumberIntent = new Intent(MainActivity.this, NumbersActivity.class);
-                startActivity(openNumberIntent);
-            }
-        });
+        CategoryAdapter adapter = new CategoryAdapter(this, getSupportFragmentManager());
 
-        family.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent openFamilyIntent = new Intent(MainActivity.this, FamilyActivity.class);
-                startActivity(openFamilyIntent);
-            }
-        });
+        viewPager.setAdapter(adapter);
 
-        phrases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent openPhraseIntent = new Intent(MainActivity.this, PhrasesActivity.class);
-                startActivity(openPhraseIntent);
-            }
-        });
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        colors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent openColorIntent = new Intent(MainActivity.this, ColorsActivity.class);
-                startActivity(openColorIntent);
-            }
-        });
+        tabLayout.setupWithViewPager(viewPager);
+
+
     }
 }
