@@ -23,8 +23,14 @@ import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
  */
 public class ColorsFragment extends Fragment {
 
+    //MediaPlayer variable to play Miwok pronunciation
     MediaPlayer mediaPlayer;
+
+    //AudioManager variable to manage audio focus
     AudioManager audioManager;
+
+    //Initiate audio focus change listener to control music
+    //in case of other music gain audio focus
     AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 public void onAudioFocusChange(int focusChange) {
@@ -41,6 +47,8 @@ public class ColorsFragment extends Fragment {
 
 
             };
+
+    //Listen to music completion and release media player and audio focus
     MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -52,7 +60,13 @@ public class ColorsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * Create view of fragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -15,10 +15,15 @@
  */
 package com.example.android.miwok;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -28,16 +33,27 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
+        //Create toolbar
+
+        Toolbar mToolbar = (Toolbar)findViewById(R.id.miwok_toolbar);
+
+        setSupportActionBar(mToolbar);
+
+
+        //Initiate ViewPager object to create main activity with fragments
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
+        //Initiate CategoryAdapter object to get fragment view to main activity
         CategoryAdapter adapter = new CategoryAdapter(this, getSupportFragmentManager());
 
+        //Set adapter to ViewPager
         viewPager.setAdapter(adapter);
 
+        //Initiate TabLayout for activity, the activity is to have 4 tab for 4 fragment
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
+        //Set up tab layout with ViewPager
         tabLayout.setupWithViewPager(viewPager);
-
 
     }
 }
